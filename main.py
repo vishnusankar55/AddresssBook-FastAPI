@@ -8,7 +8,6 @@ from database import execute_query
 app = FastAPI()
 
 
-# Define Address Model
 class Address(BaseModel):
     address_id: int
     street: str
@@ -16,7 +15,6 @@ class Address(BaseModel):
     state: str
     country: str
     coordinates: tuple
-# Your FastAPI endpoints
 @app.get("/address/{address_id}")
 async def read_address(address_id: int):
     query = "SELECT * FROM addresses WHERE address_id=?"
@@ -27,16 +25,13 @@ async def read_address(address_id: int):
     else:
         raise HTTPException(status_code=404, detail="Address not found")    
 
-# Connect to SQLite Database
 conn = sqlite3.connect('address_book.db')
 c = conn.cursor()
 
-# Create Address Table if not exists
 c.execute('''CREATE TABLE IF NOT EXISTS addresses
              (address_id INTEGER PRIMARY KEY, street TEXT, city TEXT, state TEXT, country TEXT, lat REAL, long REAL)''')
 conn.commit()
 
-# CRUD Operations
 @app.post("/address/", response_model=Address)
 def create_address(address: Address):
     with conn:
