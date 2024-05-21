@@ -22,6 +22,9 @@ Store coordinates in the database when creating or updating an address entry.
 Provide Terminal Commands:
 
 Set up virtual environment (optional but recommended): python -m venv venv
+
 Activate virtual environment: source venv/bin/activate (Linux/Mac) or venv\Scripts\activate (Windows)
+
 Install dependencies: pip install fastapi uvicorn[standard] pydantic sqlalchemy
+
 Run the FastAPI app: uvicorn main:app --reload
