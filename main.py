@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Tuple
 import sqlite3
@@ -14,7 +14,6 @@ class Address(BaseModel):
     country: str
     coordinates: Tuple[float, float]
 
-# Database connection
 def get_db_connection():
     conn = sqlite3.connect('address_book.db')
     conn.row_factory = sqlite3.Row
@@ -99,7 +98,7 @@ def get_addresses_nearby(lat: float, long: float, distance: float):
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
 def haversine(lat1, lon1, lat2, lon2):
-    R = 6371  # Radius of the Earth in kilometers
+    R = 6371  
     dLat = math.radians(lat2 - lat1)
     dLon = math.radians(lon2 - lon1)
     a = math.sin(dLat / 2) ** 2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dLon / 2) ** 2
