@@ -28,3 +28,11 @@ Activate virtual environment: source venv/bin/activate (Linux/Mac) or venv\Scrip
 Install dependencies: pip install fastapi uvicorn[standard] pydantic sqlalchemy
 
 Run the FastAPI app: uvicorn main:app --reload
+
+I used Postman Application to check the frontend and to check the API endpoints. Here I am adding the API endpoints
+
+POST /address/: Create a new address.
+GET /address/{address_id}: Retrieve an address by its ID.
+PUT /address/{address_id}: Update an address by its ID.
+DELETE /address/{address_id}: Delete an address by its ID.
+GET /addresses/: Retrieve all addresses.
